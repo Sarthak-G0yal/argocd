@@ -9,4 +9,5 @@ random_value = random.randint(1, 100)
 
 @app.get("/")
 def read_root():
-    return {"msg": f"Hello World {random_value} new version"}
+    return {"msg": f"Hello World {random_value}",
+            "version":"v1.0.3"}
