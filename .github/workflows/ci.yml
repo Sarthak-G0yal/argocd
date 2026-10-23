@@ -2,30 +2,14 @@ name: Docker Image CI
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    tags:
+      - "v*"
 
 jobs:
-  release-please:
-    name: Release Please (PR & Tag)
-    runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-      version: ${{ steps.release.outputs.version }}
-    steps:
-      - uses: googleapis/release-please-action@v4
-        id: release
-        with:
-          release-type: python
-          package-name: argo-python-web
-
   build-and-push:
-    name: Build & Push Server Docker Image
-    needs: release-please
-    if: ${{ needs.release-please.outputs.release_created }}
+    name: Build & Push Python Docker Image
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,5 +29,5 @@ jobs:
           context: .
           push: true
           tags: |
+            sarthakg0yal/argo-python-web:${{ github.ref_name }}
             sarthakg0yal/argo-python-web:latest
-            sarthakg0yal/argo-python-web:${{ needs.release-please.outputs.version }}
