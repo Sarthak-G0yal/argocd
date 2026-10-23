@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: python-web
-          image: sarthakg0yal/argo-python-web
+          image: sarthakg0yal/argo-python-web:v1.0.2
           resources:
             limits:
               memory: "128Mi"
