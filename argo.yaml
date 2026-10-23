@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Sarthak-G0yal/argocd.git
     targetRevision: HEAD
-    path: guestbook
+    path: argo-yamls
   destination:
     server: https://kubernetes.default.svc
     namespace: guestbook
